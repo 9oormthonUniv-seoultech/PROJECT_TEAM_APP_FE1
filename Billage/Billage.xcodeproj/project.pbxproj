@@ -51,6 +51,11 @@
 		3C8CA1EA2C90571E00BB470F /* Billage */ = {
 			isa = PBXGroup;
 			children = (
+				3CDC55272C9EB58B0034A74D /* Resource */,
+				3CDC55282C9EB5940034A74D /* Extension */,
+				3CDC55292C9EB59A0034A74D /* Model */,
+				3CDC552A2C9EB5A00034A74D /* Store */,
+				3CDC552B2C9EB5A60034A74D /* View */,
 				3C8CA1EB2C90571E00BB470F /* BillageApp.swift */,
 				3C8CA1ED2C90571E00BB470F /* ContentView.swift */,
 				3C8CA1EF2C90572100BB470F /* Assets.xcassets */,
@@ -65,6 +70,55 @@
 				3C8CA1F22C90572100BB470F /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		3CDC55272C9EB58B0034A74D /* Resource */ = {
+			isa = PBXGroup;
+			children = (
+				3CDC55332C9EB6750034A74D /* Pretendard */,
+			);
+			path = Resource;
+			sourceTree = "<group>";
+		};
+		3CDC55282C9EB5940034A74D /* Extension */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Extension;
+			sourceTree = "<group>";
+		};
+		3CDC55292C9EB59A0034A74D /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		3CDC552A2C9EB5A00034A74D /* Store */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Store;
+			sourceTree = "<group>";
+		};
+		3CDC552B2C9EB5A60034A74D /* View */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		3CDC55332C9EB6750034A74D /* Pretendard */ = {
+			isa = PBXGroup;
+			children = (
+				3CDC552D2C9EB6750034A74D /* Pretendard-Bold.otf */,
+				3CDC552E2C9EB6750034A74D /* Pretendard-Light.otf */,
+				3CDC552F2C9EB6750034A74D /* Pretendard-Medium.otf */,
+				3CDC55302C9EB6750034A74D /* Pretendard-Regular.otf */,
+				3CDC55312C9EB6750034A74D /* Pretendard-SemiBold.otf */,
+				3CDC55322C9EB6750034A74D /* Pretendard-Thin.otf */,
+			);
+			path = Pretendard;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
