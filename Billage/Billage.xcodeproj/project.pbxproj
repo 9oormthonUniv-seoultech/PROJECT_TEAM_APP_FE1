@@ -11,6 +11,11 @@
 		3C8CA1EE2C90571E00BB470F /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C8CA1ED2C90571E00BB470F /* ContentView.swift */; };
 		3C8CA1F02C90572100BB470F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3C8CA1EF2C90572100BB470F /* Assets.xcassets */; };
 		3C8CA1F32C90572100BB470F /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3C8CA1F22C90572100BB470F /* Preview Assets.xcassets */; };
+		3CDC553C2C9EB7F60034A74D /* Color+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CDC553B2C9EB7F60034A74D /* Color+.swift */; };
+		3CDC553E2C9EB8010034A74D /* View+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CDC553D2C9EB8010034A74D /* View+.swift */; };
+		3CDC55422C9EB8140034A74D /* Bundle+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CDC55412C9EB8140034A74D /* Bundle+.swift */; };
+		3CDC55442C9EB8210034A74D /* CGFloat+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CDC55432C9EB8210034A74D /* CGFloat+.swift */; };
+		3CDC55462C9EB82D0034A74D /* Commons.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CDC55452C9EB82D0034A74D /* Commons.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -19,6 +24,12 @@
 		3C8CA1ED2C90571E00BB470F /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		3C8CA1EF2C90572100BB470F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		3C8CA1F22C90572100BB470F /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		3CDC553A2C9EB6F00034A74D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		3CDC553B2C9EB7F60034A74D /* Color+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Color+.swift"; sourceTree = "<group>"; };
+		3CDC553D2C9EB8010034A74D /* View+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+.swift"; sourceTree = "<group>"; };
+		3CDC55412C9EB8140034A74D /* Bundle+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Bundle+.swift"; sourceTree = "<group>"; };
+		3CDC55432C9EB8210034A74D /* CGFloat+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CGFloat+.swift"; sourceTree = "<group>"; };
+		3CDC55452C9EB82D0034A74D /* Commons.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Commons.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -51,6 +62,7 @@
 		3C8CA1EA2C90571E00BB470F /* Billage */ = {
 			isa = PBXGroup;
 			children = (
+				3CDC553A2C9EB6F00034A74D /* Info.plist */,
 				3CDC55272C9EB58B0034A74D /* Resource */,
 				3CDC55282C9EB5940034A74D /* Extension */,
 				3CDC55292C9EB59A0034A74D /* Model */,
@@ -83,6 +95,11 @@
 		3CDC55282C9EB5940034A74D /* Extension */ = {
 			isa = PBXGroup;
 			children = (
+				3CDC55452C9EB82D0034A74D /* Commons.swift */,
+				3CDC553B2C9EB7F60034A74D /* Color+.swift */,
+				3CDC553D2C9EB8010034A74D /* View+.swift */,
+				3CDC55412C9EB8140034A74D /* Bundle+.swift */,
+				3CDC55432C9EB8210034A74D /* CGFloat+.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -191,7 +208,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3CDC553E2C9EB8010034A74D /* View+.swift in Sources */,
+				3CDC55402C9EB80C0034A74D /* Font+.swift in Sources */,
 				3C8CA1EE2C90571E00BB470F /* ContentView.swift in Sources */,
+				3CDC55422C9EB8140034A74D /* Bundle+.swift in Sources */,
+				3CDC55462C9EB82D0034A74D /* Commons.swift in Sources */,
+				3CDC553C2C9EB7F60034A74D /* Color+.swift in Sources */,
+				3CDC55442C9EB8210034A74D /* CGFloat+.swift in Sources */,
 				3C8CA1EC2C90571E00BB470F /* BillageApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -329,6 +352,7 @@
 				DEVELOPMENT_TEAM = MAZQ6JDBT4;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = Billage/Info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -358,6 +382,7 @@
 				DEVELOPMENT_TEAM = MAZQ6JDBT4;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = Billage/Info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
