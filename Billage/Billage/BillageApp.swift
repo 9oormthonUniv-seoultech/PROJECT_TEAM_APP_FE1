@@ -9,9 +9,13 @@ import SwiftUI
 
 @main
 struct BillageApp: App {
+    
+    @ObservedObject var authStore = AuthStore()
+    
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            LaunchView()
+                .environmentObject(authStore)
         }
     }
 }
