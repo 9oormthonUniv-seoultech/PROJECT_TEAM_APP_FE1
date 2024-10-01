@@ -9,13 +9,18 @@ import Foundation
 import SwiftUI
 
 extension Color {
-    static let primaryColor = Color("PrimaryColor")
-    static let secondaryColor = Color("SecondaryColor")
-    static let billGray1 = Color("Gray1")
-    static let billGray2 = Color("Gray2")
-    static let billGray3 = Color("Gray3")
-    static let billGray4 = Color("Gray4")
-    static let billGray5 = Color("Gray5")
+    static let billColor1 = Color("BillageColor1")
+    static let billColor2 = Color("BillageColor2")
+    static let billWh = Color("wh")
+    static let billWhg = Color("whg")
+    static let billGray1 = Color("BillageGray1")
+    static let billGray2 = Color("BillageGray2")
+    static let billGray3 = Color("BillageGray3")
+    static let billGray4 = Color("BillageGray4")
+    static let billGray5 = Color("BillageGray5")
+    static let billError = Color("BillageError")
+    static let billBlue = Color("BillageBlue")
+    static let billYellowSide = Color("YelloSide")
     
     // SNS 로그인 색 지정
     static let kakao = Color("Kakao")
