@@ -7,29 +7,66 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3C39DFF92CA17B6200B664C6 /* AuthStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C39DFF82CA17B6200B664C6 /* AuthStore.swift */; };
+		3C39DFFB2CA17BCF00B664C6 /* KeyChainStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C39DFFA2CA17BCF00B664C6 /* KeyChainStore.swift */; };
+		3C39DFFE2CA17C1C00B664C6 /* SwiftKeychainWrapper in Frameworks */ = {isa = PBXBuildFile; productRef = 3C39DFFD2CA17C1C00B664C6 /* SwiftKeychainWrapper */; };
+		3C39E0002CA17D6800B664C6 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C39DFFF2CA17D6800B664C6 /* MainView.swift */; };
+		3C39E0022CA17DA100B664C6 /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C39E0012CA17DA100B664C6 /* LoginView.swift */; };
+		3C39E0042CA18F7D00B664C6 /* Modifiers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C39E0032CA18F7D00B664C6 /* Modifiers.swift */; };
+		3C39E0072CA1B45900B664C6 /* SignUpFirstView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C39E0062CA1B45900B664C6 /* SignUpFirstView.swift */; };
+		3C39E0092CA1B47400B664C6 /* SignUpSecondView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C39E0082CA1B47400B664C6 /* SignUpSecondView.swift */; };
+		3C39E00B2CA1B49200B664C6 /* SignUpThirdView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C39E00A2CA1B49200B664C6 /* SignUpThirdView.swift */; };
 		3C8CA1EC2C90571E00BB470F /* BillageApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C8CA1EB2C90571E00BB470F /* BillageApp.swift */; };
-		3C8CA1EE2C90571E00BB470F /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C8CA1ED2C90571E00BB470F /* ContentView.swift */; };
+		3C8CA1EE2C90571E00BB470F /* LaunchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C8CA1ED2C90571E00BB470F /* LaunchView.swift */; };
 		3C8CA1F02C90572100BB470F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3C8CA1EF2C90572100BB470F /* Assets.xcassets */; };
 		3C8CA1F32C90572100BB470F /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3C8CA1F22C90572100BB470F /* Preview Assets.xcassets */; };
+		3CDC55342C9EB6750034A74D /* Pretendard-Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 3CDC552D2C9EB6750034A74D /* Pretendard-Bold.otf */; };
+		3CDC55352C9EB6750034A74D /* Pretendard-Light.otf in Resources */ = {isa = PBXBuildFile; fileRef = 3CDC552E2C9EB6750034A74D /* Pretendard-Light.otf */; };
+		3CDC55362C9EB6750034A74D /* Pretendard-Medium.otf in Resources */ = {isa = PBXBuildFile; fileRef = 3CDC552F2C9EB6750034A74D /* Pretendard-Medium.otf */; };
+		3CDC55372C9EB6750034A74D /* Pretendard-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = 3CDC55302C9EB6750034A74D /* Pretendard-Regular.otf */; };
+		3CDC55382C9EB6750034A74D /* Pretendard-SemiBold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 3CDC55312C9EB6750034A74D /* Pretendard-SemiBold.otf */; };
+		3CDC55392C9EB6750034A74D /* Pretendard-Thin.otf in Resources */ = {isa = PBXBuildFile; fileRef = 3CDC55322C9EB6750034A74D /* Pretendard-Thin.otf */; };
 		3CDC553C2C9EB7F60034A74D /* Color+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CDC553B2C9EB7F60034A74D /* Color+.swift */; };
 		3CDC553E2C9EB8010034A74D /* View+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CDC553D2C9EB8010034A74D /* View+.swift */; };
+		3CDC55402C9EB80C0034A74D /* Font+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CDC553F2C9EB80C0034A74D /* Font+.swift */; };
 		3CDC55422C9EB8140034A74D /* Bundle+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CDC55412C9EB8140034A74D /* Bundle+.swift */; };
 		3CDC55442C9EB8210034A74D /* CGFloat+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CDC55432C9EB8210034A74D /* CGFloat+.swift */; };
 		3CDC55462C9EB82D0034A74D /* Commons.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CDC55452C9EB82D0034A74D /* Commons.swift */; };
+		3CE4C9F42CACE62300169861 /* BillageBottomSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CE4C9F32CACE62300169861 /* BillageBottomSheet.swift */; };
+		3CE4C9F62CAD271600169861 /* SignUpFourthView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CE4C9F52CAD271600169861 /* SignUpFourthView.swift */; };
+		3CE4C9F82CAE7ADA00169861 /* SignUpFifthView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CE4C9F72CAE7ADA00169861 /* SignUpFifthView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		3C39DFF82CA17B6200B664C6 /* AuthStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthStore.swift; sourceTree = "<group>"; };
+		3C39DFFA2CA17BCF00B664C6 /* KeyChainStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyChainStore.swift; sourceTree = "<group>"; };
+		3C39DFFF2CA17D6800B664C6 /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
+		3C39E0012CA17DA100B664C6 /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
+		3C39E0032CA18F7D00B664C6 /* Modifiers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Modifiers.swift; sourceTree = "<group>"; };
+		3C39E0062CA1B45900B664C6 /* SignUpFirstView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpFirstView.swift; sourceTree = "<group>"; };
+		3C39E0082CA1B47400B664C6 /* SignUpSecondView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpSecondView.swift; sourceTree = "<group>"; };
+		3C39E00A2CA1B49200B664C6 /* SignUpThirdView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpThirdView.swift; sourceTree = "<group>"; };
 		3C8CA1E82C90571E00BB470F /* Billage.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Billage.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3C8CA1EB2C90571E00BB470F /* BillageApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BillageApp.swift; sourceTree = "<group>"; };
-		3C8CA1ED2C90571E00BB470F /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		3C8CA1ED2C90571E00BB470F /* LaunchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchView.swift; sourceTree = "<group>"; };
 		3C8CA1EF2C90572100BB470F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		3C8CA1F22C90572100BB470F /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		3CDC552D2C9EB6750034A74D /* Pretendard-Bold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Pretendard-Bold.otf"; sourceTree = "<group>"; };
+		3CDC552E2C9EB6750034A74D /* Pretendard-Light.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Pretendard-Light.otf"; sourceTree = "<group>"; };
+		3CDC552F2C9EB6750034A74D /* Pretendard-Medium.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Pretendard-Medium.otf"; sourceTree = "<group>"; };
+		3CDC55302C9EB6750034A74D /* Pretendard-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Pretendard-Regular.otf"; sourceTree = "<group>"; };
+		3CDC55312C9EB6750034A74D /* Pretendard-SemiBold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Pretendard-SemiBold.otf"; sourceTree = "<group>"; };
+		3CDC55322C9EB6750034A74D /* Pretendard-Thin.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Pretendard-Thin.otf"; sourceTree = "<group>"; };
 		3CDC553A2C9EB6F00034A74D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		3CDC553B2C9EB7F60034A74D /* Color+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Color+.swift"; sourceTree = "<group>"; };
 		3CDC553D2C9EB8010034A74D /* View+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+.swift"; sourceTree = "<group>"; };
+		3CDC553F2C9EB80C0034A74D /* Font+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Font+.swift"; sourceTree = "<group>"; };
 		3CDC55412C9EB8140034A74D /* Bundle+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Bundle+.swift"; sourceTree = "<group>"; };
 		3CDC55432C9EB8210034A74D /* CGFloat+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CGFloat+.swift"; sourceTree = "<group>"; };
 		3CDC55452C9EB82D0034A74D /* Commons.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Commons.swift; sourceTree = "<group>"; };
+		3CE4C9F32CACE62300169861 /* BillageBottomSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BillageBottomSheet.swift; sourceTree = "<group>"; };
+		3CE4C9F52CAD271600169861 /* SignUpFourthView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpFourthView.swift; sourceTree = "<group>"; };
+		3CE4C9F72CAE7ADA00169861 /* SignUpFifthView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpFifthView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -37,12 +74,25 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3C39DFFE2CA17C1C00B664C6 /* SwiftKeychainWrapper in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		3C39E0052CA1B43E00B664C6 /* SignUp */ = {
+			isa = PBXGroup;
+			children = (
+				3C39E0062CA1B45900B664C6 /* SignUpFirstView.swift */,
+				3C39E0082CA1B47400B664C6 /* SignUpSecondView.swift */,
+				3C39E00A2CA1B49200B664C6 /* SignUpThirdView.swift */,
+				3CE4C9F52CAD271600169861 /* SignUpFourthView.swift */,
+				3CE4C9F72CAE7ADA00169861 /* SignUpFifthView.swift */,
+			);
+			path = SignUp;
+			sourceTree = "<group>";
+		};
 		3C8CA1DF2C90571E00BB470F = {
 			isa = PBXGroup;
 			children = (
@@ -62,14 +112,13 @@
 		3C8CA1EA2C90571E00BB470F /* Billage */ = {
 			isa = PBXGroup;
 			children = (
+				3C8CA1EB2C90571E00BB470F /* BillageApp.swift */,
 				3CDC553A2C9EB6F00034A74D /* Info.plist */,
 				3CDC55272C9EB58B0034A74D /* Resource */,
 				3CDC55282C9EB5940034A74D /* Extension */,
 				3CDC55292C9EB59A0034A74D /* Model */,
 				3CDC552A2C9EB5A00034A74D /* Store */,
 				3CDC552B2C9EB5A60034A74D /* View */,
-				3C8CA1EB2C90571E00BB470F /* BillageApp.swift */,
-				3C8CA1ED2C90571E00BB470F /* ContentView.swift */,
 				3C8CA1EF2C90572100BB470F /* Assets.xcassets */,
 				3C8CA1F12C90572100BB470F /* Preview Content */,
 			);
@@ -98,8 +147,10 @@
 				3CDC55452C9EB82D0034A74D /* Commons.swift */,
 				3CDC553B2C9EB7F60034A74D /* Color+.swift */,
 				3CDC553D2C9EB8010034A74D /* View+.swift */,
+				3CDC553F2C9EB80C0034A74D /* Font+.swift */,
 				3CDC55412C9EB8140034A74D /* Bundle+.swift */,
 				3CDC55432C9EB8210034A74D /* CGFloat+.swift */,
+				3C39E0032CA18F7D00B664C6 /* Modifiers.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -114,6 +165,8 @@
 		3CDC552A2C9EB5A00034A74D /* Store */ = {
 			isa = PBXGroup;
 			children = (
+				3C39DFF82CA17B6200B664C6 /* AuthStore.swift */,
+				3C39DFFA2CA17BCF00B664C6 /* KeyChainStore.swift */,
 			);
 			path = Store;
 			sourceTree = "<group>";
@@ -121,6 +174,11 @@
 		3CDC552B2C9EB5A60034A74D /* View */ = {
 			isa = PBXGroup;
 			children = (
+				3C8CA1ED2C90571E00BB470F /* LaunchView.swift */,
+				3C39DFFF2CA17D6800B664C6 /* MainView.swift */,
+				3C39E0012CA17DA100B664C6 /* LoginView.swift */,
+				3CE4C9F22CACE5A200169861 /* Commons */,
+				3C39E0052CA1B43E00B664C6 /* SignUp */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -136,6 +194,14 @@
 				3CDC55322C9EB6750034A74D /* Pretendard-Thin.otf */,
 			);
 			path = Pretendard;
+			sourceTree = "<group>";
+		};
+		3CE4C9F22CACE5A200169861 /* Commons */ = {
+			isa = PBXGroup;
+			children = (
+				3CE4C9F32CACE62300169861 /* BillageBottomSheet.swift */,
+			);
+			path = Commons;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -154,6 +220,9 @@
 			dependencies = (
 			);
 			name = Billage;
+			packageProductDependencies = (
+				3C39DFFD2CA17C1C00B664C6 /* SwiftKeychainWrapper */,
+			);
 			productName = Billage;
 			productReference = 3C8CA1E82C90571E00BB470F /* Billage.app */;
 			productType = "com.apple.product-type.application";
@@ -182,6 +251,9 @@
 				Base,
 			);
 			mainGroup = 3C8CA1DF2C90571E00BB470F;
+			packageReferences = (
+				3C39DFFC2CA17C1C00B664C6 /* XCRemoteSwiftPackageReference "SwiftKeychainWrapper" */,
+			);
 			productRefGroup = 3C8CA1E92C90571E00BB470F /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -197,6 +269,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				3C8CA1F32C90572100BB470F /* Preview Assets.xcassets in Resources */,
+				3CDC55372C9EB6750034A74D /* Pretendard-Regular.otf in Resources */,
+				3CDC55382C9EB6750034A74D /* Pretendard-SemiBold.otf in Resources */,
+				3CDC55392C9EB6750034A74D /* Pretendard-Thin.otf in Resources */,
+				3CDC55362C9EB6750034A74D /* Pretendard-Medium.otf in Resources */,
+				3CDC55352C9EB6750034A74D /* Pretendard-Light.otf in Resources */,
+				3CDC55342C9EB6750034A74D /* Pretendard-Bold.otf in Resources */,
 				3C8CA1F02C90572100BB470F /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -208,14 +286,25 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3CE4C9F82CAE7ADA00169861 /* SignUpFifthView.swift in Sources */,
 				3CDC553E2C9EB8010034A74D /* View+.swift in Sources */,
+				3C39E0072CA1B45900B664C6 /* SignUpFirstView.swift in Sources */,
 				3CDC55402C9EB80C0034A74D /* Font+.swift in Sources */,
-				3C8CA1EE2C90571E00BB470F /* ContentView.swift in Sources */,
+				3C8CA1EE2C90571E00BB470F /* LaunchView.swift in Sources */,
 				3CDC55422C9EB8140034A74D /* Bundle+.swift in Sources */,
 				3CDC55462C9EB82D0034A74D /* Commons.swift in Sources */,
+				3C39DFFB2CA17BCF00B664C6 /* KeyChainStore.swift in Sources */,
+				3C39E0022CA17DA100B664C6 /* LoginView.swift in Sources */,
 				3CDC553C2C9EB7F60034A74D /* Color+.swift in Sources */,
+				3C39E0002CA17D6800B664C6 /* MainView.swift in Sources */,
+				3C39E0092CA1B47400B664C6 /* SignUpSecondView.swift in Sources */,
+				3CE4C9F42CACE62300169861 /* BillageBottomSheet.swift in Sources */,
 				3CDC55442C9EB8210034A74D /* CGFloat+.swift in Sources */,
+				3C39E00B2CA1B49200B664C6 /* SignUpThirdView.swift in Sources */,
+				3CE4C9F62CAD271600169861 /* SignUpFourthView.swift in Sources */,
+				3C39DFF92CA17B6200B664C6 /* AuthStore.swift in Sources */,
 				3C8CA1EC2C90571E00BB470F /* BillageApp.swift in Sources */,
+				3C39E0042CA18F7D00B664C6 /* Modifiers.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -358,6 +447,7 @@
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UIUserInterfaceStyle = Light;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -388,6 +478,7 @@
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UIUserInterfaceStyle = Light;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -423,6 +514,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		3C39DFFC2CA17C1C00B664C6 /* XCRemoteSwiftPackageReference "SwiftKeychainWrapper" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/jrendel/SwiftKeychainWrapper";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 4.0.1;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		3C39DFFD2CA17C1C00B664C6 /* SwiftKeychainWrapper */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 3C39DFFC2CA17C1C00B664C6 /* XCRemoteSwiftPackageReference "SwiftKeychainWrapper" */;
+			productName = SwiftKeychainWrapper;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 3C8CA1E02C90571E00BB470F /* Project object */;
 }
