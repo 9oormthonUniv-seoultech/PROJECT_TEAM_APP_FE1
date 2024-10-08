@@ -101,7 +101,7 @@ struct SignUpThirdView: View {
                 Spacer()
                 
                 NavigationLink {
-                    SignUpThirdView()
+                    SignUpFourthView()
                 } label: {
                     Text("다음으로")
                         .billageButtonModifier(width: .screenWidth * 0.9, height: 50, isEnabled: nextButtonStatus)
