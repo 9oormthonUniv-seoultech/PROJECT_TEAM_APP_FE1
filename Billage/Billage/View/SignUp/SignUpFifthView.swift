@@ -9,6 +9,8 @@ import SwiftUI
 
 struct SignUpFifthView: View {
     
+    @EnvironmentObject var authStore: AuthStore
+    
     @State private var firstAgreement: Bool = false
     @State private var secondAgreement: Bool = false
     
@@ -128,8 +130,8 @@ struct SignUpFifthView: View {
             
             Spacer()
             
-            NavigationLink {
-                SignUpFifthView()
+            Button {
+                authStore.isHavingToken = true
             } label: {
                 Text("다음으로")
                     .billageButtonModifier(width: .screenWidth * 0.9, height: 50, isEnabled: nextButtonStatus)
