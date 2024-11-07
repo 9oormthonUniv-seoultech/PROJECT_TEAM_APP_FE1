@@ -40,5 +40,12 @@ struct BillageBottomSheet<Content: View>: View {
             }
             .padding(.horizontal, 15)
         }
+        .onChange(of: isPresented) {
+            if isPresented {
+                OverlayWindow.shared.show(self) // 최상단에 표시
+            } else {
+                OverlayWindow.shared.hide() // 숨기기
+            }
+        }
     }
 }
