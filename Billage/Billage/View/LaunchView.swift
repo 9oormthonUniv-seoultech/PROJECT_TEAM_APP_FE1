@@ -23,7 +23,7 @@ struct LaunchView: View {
         UINavigationBar.appearance().standardAppearance = appearance
         
         // 탭 바 전체에 적용
-        UITabBar.appearance().backgroundColor = UIColor(Color.white)
+        UITabBar.appearance().backgroundColor = UIColor(Color.billWh)
     }
     
     @EnvironmentObject var authStore: AuthStore
@@ -34,7 +34,7 @@ struct LaunchView: View {
     var body: some View {
         if isActive {
             if authStore.isHavingToken {
-                MainView()
+                MainTapView()
             } else {
                 LoginView()
             }
