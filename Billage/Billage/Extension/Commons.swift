@@ -6,3 +6,6 @@
 //
 
 import Foundation
+
+// 배포 서버
+public let api_url: String = Bundle.main.api_url
