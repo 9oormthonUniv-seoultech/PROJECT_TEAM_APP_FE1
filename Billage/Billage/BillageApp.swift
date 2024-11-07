@@ -11,11 +11,17 @@ import SwiftUI
 struct BillageApp: App {
     
     @ObservedObject var authStore = AuthStore()
+    @ObservedObject private var navigationPathManager = NavigationPathManager()
+    
+    @StateObject private var overlayManager = OverlayManager()
     
     var body: some Scene {
         WindowGroup {
             LaunchView()
                 .environmentObject(authStore)
+                .environmentObject(overlayManager)
+                .environmentObject(navigationPathManager)
+                .overlay(OverlayContainer().environmentObject(overlayManager))
         }
     }
 }
