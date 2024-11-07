@@ -11,7 +11,7 @@ import Foundation
 // MARK: - 로그인, 회원가입 텍스트필드 Modifier
 struct BillageTextFieldModifier: ViewModifier {
     
-    var width: CGFloat
+    var width: CGFloat?
     var height: CGFloat
     
     func body(content: Content) -> some View {
@@ -20,6 +20,7 @@ struct BillageTextFieldModifier: ViewModifier {
             .padding()
             .textInputAutocapitalization(.never) // 처음 문자 자동으로 대문자로 바꿔주는 기능 막기
             .frame(width: width, height: height)
+            .background(Color.billWh)
             .overlay(
                 RoundedRectangle(cornerRadius: 8) // 둥근 모서리 추가
                     .stroke(Color.billGray3, lineWidth: 1.5) // 테두리 색과 두께 설정
@@ -47,6 +48,24 @@ struct BillageButtonModifier: ViewModifier {
     }
 }
 
+// MARK: - 취소 버튼 Modifier
+struct BillageCancelButtonModifier: ViewModifier {
+    
+    var width: CGFloat
+    var height: CGFloat
+    
+    func body(content: Content) -> some View {
+        ZStack {
+            RoundedRectangle(cornerRadius: 8)
+                .frame(width: width, height: height)
+                .tint(.billGray5)
+            content
+                .font(.option)
+                .foregroundColor(.billGray1)
+        }
+    }
+}
+
 struct BackButtonArrowModifier: ViewModifier {
     @Environment(\.dismiss) private var dismiss
 
@@ -62,6 +81,40 @@ struct BackButtonArrowModifier: ViewModifier {
                         .font(.title2)
                         .foregroundColor(Color.billGray3)
                 }
+            }
+        }
+    }
+}
+
+struct ReservationBackgroundModifier: ViewModifier {
+    func body(content: Content) -> some View {
+        content
+            .padding(.vertical, 10)
+            .background(Color.billWhg)
+            .cornerRadius(10)
+            .overlay(
+                RoundedRectangle(cornerRadius: 10)
+                    .stroke(Color.billGray5, lineWidth: 1.5)
+            )
+    }
+}
+
+struct BottomBorder: ViewModifier {
+    
+    let showBorder: Bool
+    
+    func body(content: Content) -> some View {
+        Group {
+            if showBorder {
+                content.overlay(
+                    RoundedRectangle(cornerRadius: 10)
+                        .frame(height: 3)
+                        .foregroundColor(.billGray1)
+                        .padding(.top, 5)
+                    , alignment: .bottom
+                )
+            } else {
+                content
             }
         }
     }
