@@ -20,6 +20,10 @@ class KeychainStore {
         KeychainWrapper.standard.set(token, forKey: "REFRESH_TOKEN")
     }
     
+    func saveFcmToken(_ token: String) {
+        KeychainWrapper.standard.set(token, forKey: "FCM_TOKEN")
+    }
+    
     func getAccessToken() -> String? {
         return KeychainWrapper.standard.string(forKey: "ACCESS_TOKEN")
     }
@@ -28,9 +32,14 @@ class KeychainStore {
         return KeychainWrapper.standard.string(forKey: "REFRESH_TOKEN")
     }
     
+    func getFcmToken() -> String? {
+        return KeychainWrapper.standard.string(forKey: "FCM_TOKEN")
+    }
+    
     func resetAllToken() {
         self.saveAccessToken("")
         self.saveRefreshToken("")
+        self.saveFcmToken("")
     }
     
 }
