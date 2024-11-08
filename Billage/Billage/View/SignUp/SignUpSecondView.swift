@@ -21,6 +21,8 @@ enum PasswordSpecialCharacterStatus {
 
 struct SignUpSecondView: View {
     
+    @EnvironmentObject var signUpUserStore: SignUpUserStore
+    
     @State private var password: String = ""
     @State private var passwordCheck: String = ""
     
@@ -190,6 +192,9 @@ struct SignUpSecondView: View {
             .padding(.bottom, 40)
             .disabled(!nextButtonStatus)
             .foregroundStyle(nextButtonStatus ? Color.billColor1 : Color.billGray3)
+            .onDisappear {
+                signUpUserStore.signUpUser.password = password
+            }
         }
         .navigationBarTitle("필수 정보 입력")
         .navigationBarTitleDisplayMode(.inline)

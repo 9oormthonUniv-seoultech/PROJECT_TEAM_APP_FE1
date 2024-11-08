@@ -9,6 +9,8 @@ import SwiftUI
 
 struct SignUpThirdView: View {
     
+    @EnvironmentObject var signUpUserStore: SignUpUserStore
+    
     @State private var selectedCollege = ""
     @State private var selectedMajor = ""
     @State private var isShowingCollegeBottomSheet = false
@@ -17,6 +19,13 @@ struct SignUpThirdView: View {
     private var nextButtonStatus: Bool {
         return !selectedCollege.isEmpty && !selectedMajor.isEmpty ? true : false
     }
+    
+    private var filteredMajors: [String] {
+       guard let selectedCollegeInfo = signUpUserStore.colleges.first(where: { $0.college == selectedCollege }) else {
+           return []
+       }
+       return selectedCollegeInfo.majors
+   }
     
     var body: some View {
         ZStack {
@@ -29,8 +38,12 @@ struct SignUpThirdView: View {
                     
                     ZStack {
                         Button {
-                            withAnimation {
-                                isShowingCollegeBottomSheet = true
+                            signUpUserStore.getUnivCollege { result in
+                                if result {
+                                    withAnimation {
+                                        isShowingCollegeBottomSheet = true
+                                    }
+                                }
                             }
                         } label: {
                             Text(selectedCollege.isEmpty ? "선택하세요..." : selectedCollege)
@@ -109,6 +122,10 @@ struct SignUpThirdView: View {
                 .padding(.bottom, 40)
                 .disabled(!nextButtonStatus)
                 .foregroundStyle(nextButtonStatus ? Color.billColor1 : Color.billGray3)
+                .onDisappear {
+                    signUpUserStore.signUpUser.college = selectedCollege
+                    signUpUserStore.signUpUser.major = selectedMajor
+                }
             }
             
             BillageBottomSheet(isPresented: $isShowingCollegeBottomSheet) {
@@ -120,40 +137,18 @@ struct SignUpThirdView: View {
                             .padding(.bottom, 16)
                         
                         VStack(alignment: .leading, spacing: 16) {
-                            Button {
-                                selectedCollege = "공과대학"
-                                
-                                withAnimation {
-                                    isShowingCollegeBottomSheet = false
+                            ForEach(signUpUserStore.colleges, id: \.self) { data in
+                                Button {
+                                    selectedCollege = data.college
+                                    
+                                    withAnimation {
+                                        isShowingCollegeBottomSheet = false
+                                    }
+                                } label: {
+                                    Text(data.college)
+                                        .font(.body)
+                                        .foregroundStyle(Color.billGray1)
                                 }
-                            } label: {
-                                Text("공과대학")
-                                    .font(.body)
-                                    .foregroundStyle(Color.billGray1)
-                            }
-                            
-                            Button {
-                                selectedCollege = "기술경영융합대학"
-                                
-                                withAnimation {
-                                    isShowingCollegeBottomSheet = false
-                                }
-                            } label: {
-                                Text("기술경영융합대학")
-                                    .font(.body)
-                                    .foregroundStyle(Color.billGray1)
-                            }
-                            
-                            Button {
-                                selectedCollege = "조형대학"
-                                
-                                withAnimation {
-                                    isShowingCollegeBottomSheet = false
-                                }
-                            } label: {
-                                Text("조형대학")
-                                    .font(.body)
-                                    .foregroundStyle(Color.billGray1)
                             }
                         }
                         .padding(.bottom, 35)
@@ -173,40 +168,18 @@ struct SignUpThirdView: View {
                             .padding(.bottom, 16)
                         
                         VStack(alignment: .leading, spacing: 16) {
-                            Button {
-                                selectedMajor = "ITM전공"
-                                
-                                withAnimation {
-                                    isShowingMajorBottomSheet = false
+                            ForEach(filteredMajors, id: \.self) { major in
+                                Button {
+                                    selectedMajor = major
+                                    
+                                    withAnimation {
+                                        isShowingMajorBottomSheet = false
+                                    }
+                                } label: {
+                                    Text(major)
+                                        .font(.body)
+                                        .foregroundStyle(Color.billGray1)
                                 }
-                            } label: {
-                                Text("ITM전공")
-                                    .font(.body)
-                                    .foregroundStyle(Color.billGray1)
-                            }
-                            
-                            Button {
-                                selectedMajor = "시각디자인학과"
-                                
-                                withAnimation {
-                                    isShowingMajorBottomSheet = false
-                                }
-                            } label: {
-                                Text("시각디자인학과")
-                                    .font(.body)
-                                    .foregroundStyle(Color.billGray1)
-                            }
-                            
-                            Button {
-                                selectedMajor = "컴퓨터공학과"
-                                
-                                withAnimation {
-                                    isShowingMajorBottomSheet = false
-                                }
-                            } label: {
-                                Text("컴퓨터공학과")
-                                    .font(.body)
-                                    .foregroundStyle(Color.billGray1)
                             }
                         }
                         .padding(.bottom, 35)

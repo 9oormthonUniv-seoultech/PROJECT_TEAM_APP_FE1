@@ -15,6 +15,8 @@ enum StudentNumberStatus {
 
 struct SignUpFirstView: View {
     
+    @EnvironmentObject var signUpUserStore: SignUpUserStore
+    
     @State private var name: String = ""
     @State private var studentNumber: String = ""
     @State private var phoneNumber: String = ""
@@ -45,7 +47,9 @@ struct SignUpFirstView: View {
                             .foregroundStyle(Color.billGray1)
                             .keyboardType(.numberPad)
                             .onChange(of: studentNumber) {
-                                studentNumberStatus = studentNumberStatus(for: studentNumber)
+                                studentNumberStatus(for: studentNumber) { status in
+                                    studentNumberStatus = status
+                                }
                             }
                             .overlay(
                                 RoundedRectangle(cornerRadius: 8) // 둥근 모서리 추가
@@ -112,6 +116,11 @@ struct SignUpFirstView: View {
             .padding(.bottom, 40)
             .disabled(!nextButtonStatus)
             .foregroundStyle(nextButtonStatus ? Color.billColor1 : Color.billGray3)
+            .onDisappear {
+                signUpUserStore.signUpUser.name = name
+                signUpUserStore.signUpUser.studentNumber = studentNumber
+                signUpUserStore.signUpUser.phoneNumber = formatPhoneNumber(phoneNumber)
+            }
         }
         .navigationBarTitle("필수 정보 입력")
         .navigationBarTitleDisplayMode(.inline)
@@ -120,13 +129,19 @@ struct SignUpFirstView: View {
     }
     
     // 상태 반환 함수
-    private func studentNumberStatus(for studentNumber: String) -> StudentNumberStatus {
+    private func studentNumberStatus(for studentNumber: String, completion: @escaping (StudentNumberStatus) -> Void) {
         if studentNumber.isEmpty {
-            return .empty
-        } else if studentNumber.count > 4 {
-            return .valid
+            completion(.empty)
+        } else if studentNumber.count > 7 {
+            signUpUserStore.getDoubleCheckStudentNumber(studentNumber: studentNumber) { result in
+                if result {
+                    completion(.valid)
+                } else {
+                    completion(.invalid)
+                }
+            }
         } else {
-            return .invalid
+            completion(.empty)
         }
     }
     
@@ -139,5 +154,20 @@ struct SignUpFirstView: View {
         case .invalid:
             return Color.billError
         }
+    }
+    
+    func formatPhoneNumber(_ phoneNumber: String) -> String {
+        let cleanPhoneNumber = phoneNumber.filter { $0.isNumber }
+        
+        guard cleanPhoneNumber.count == 11 else {
+            return phoneNumber // 유효하지 않은 길이면 원본 반환
+        }
+        
+        let startIndex = cleanPhoneNumber.index(cleanPhoneNumber.startIndex, offsetBy: 3)
+        let middleIndex = cleanPhoneNumber.index(cleanPhoneNumber.startIndex, offsetBy: 7)
+        
+        let formattedNumber = "\(cleanPhoneNumber[..<startIndex])-\(cleanPhoneNumber[startIndex..<middleIndex])-\(cleanPhoneNumber[middleIndex...])"
+        
+        return formattedNumber
     }
 }

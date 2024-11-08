@@ -10,9 +10,12 @@ import SwiftUI
 struct SignUpFifthView: View {
     
     @EnvironmentObject var authStore: AuthStore
+    @EnvironmentObject var signUpUserStore: SignUpUserStore
+    @EnvironmentObject var navigationPathManager: NavigationPathManager
     
     @State private var firstAgreement: Bool = false
     @State private var secondAgreement: Bool = false
+    @State private var thirdAgreement: Bool = false
     
     private var allAgreement: Bool {
         return firstAgreement && secondAgreement ? true : false
@@ -131,7 +134,19 @@ struct SignUpFifthView: View {
             Spacer()
             
             Button {
-                authStore.isHavingToken = true
+                signUpUserStore.signUpUser.agreedToTerms = nextButtonStatus
+                
+                print("signUpUserStore.signUpUser: \(signUpUserStore.signUpUser)")
+                
+                signUpUserStore.postCreateUser(user: signUpUserStore.signUpUser) { result in
+                    if result == .success {
+                        navigationPathManager.resetToRoot()
+                    } else if result == .already {
+                        print("이미 가입되어있음")
+                    } else {
+                        print("그냥 안됨")
+                    }
+                }
             } label: {
                 Text("다음으로")
                     .billageButtonModifier(width: .screenWidth * 0.9, height: 50, isEnabled: nextButtonStatus)
