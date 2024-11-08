@@ -9,10 +9,11 @@ import SwiftUI
 
 struct MyPageView: View {
     
+    @EnvironmentObject var authStore: AuthStore
     @EnvironmentObject var overlayManager: OverlayManager
     
     var body: some View {
-        VStack(alignment: .leading, spacing: 0) {
+        VStack(alignment: .leading, spacing: -1) {
             HStack {
                 Image("studing_logo")
                     .resizable()
@@ -41,7 +42,7 @@ struct MyPageView: View {
             .background(.billageColor1)
             
             ZStack {
-                Image("studing_logo")
+                Image("mypageImage")
                     .resizable()
                     .frame(width: .screenWidth)
                     .scaledToFit()
@@ -49,8 +50,8 @@ struct MyPageView: View {
                 
                 VStack {
                     Text("김서영님, 빌리지와 12번의 강의실 예약을 함께했어요!")
-                        .font(.option)
-                        .foregroundStyle(Color.billGray1)
+                        .font(.bodysemibold)
+                        .foregroundStyle(Color.billWh)
                         .padding(.top, 17)
                     
                     Spacer()
@@ -138,7 +139,11 @@ struct MyPageView: View {
                             VStack(spacing: 8) {
                                 Button {
                                     overlayManager.hideSheet()
-                                    print("로그아웃처리!")
+                                    authStore.logout { result in
+                                        if result {
+                                            print("로그아웃처리!")
+                                        }
+                                    }
                                 } label: {
                                     Text("로그아웃")
                                         .billageButtonModifier(width: .infinity, height: 44, isEnabled: true)
