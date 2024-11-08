@@ -10,9 +10,15 @@ import SwiftUI
 struct HomeView: View {
     
     @EnvironmentObject var navigationPathManager: NavigationPathManager
+    @EnvironmentObject var reservationStore: ReservationStore
     
-    @State private var count: Int = 1
-    @State private var selectedButtonIndex: Int? = nil
+    @State private var headCount: Int = 1
+    @State private var selectedDate: Date = Date() // 오늘 날짜를 기본값으로
+    @State private var selectedDateString: String = ""
+    @State private var selectedBuildingId: Int = 0
+    @State private var selectedBuildingName: String = ""
+    @State private var selectedBuildingNumber: Int = 0
+    @State private var selectedBuildingFloors: [Int] = []
     
     private var nextButtonStatus: Bool {
         return true
@@ -50,7 +56,7 @@ struct HomeView: View {
                 
                 HStack {
                     ZStack {
-                        BillageDatePickerScrollView()
+                        BillageDatePickerScrollView(selectedDate: $selectedDate)
                         
                         HStack {
                             Spacer()
@@ -95,8 +101,8 @@ struct HomeView: View {
                             Spacer()
                             
                             Button {
-                                if count > 1 {
-                                    count -= 1
+                                if headCount > 1 {
+                                    headCount -= 1
                                 }
                             } label: {
                                 Image(systemName: "minus")
@@ -107,7 +113,7 @@ struct HomeView: View {
                             
                             Spacer()
                             
-                            Text("\(count)")
+                            Text("\(headCount)")
                                 .font(.option)
                                 .foregroundStyle(Color.billGray1)
                                 .frame(width: 34, height: 34)
@@ -118,7 +124,7 @@ struct HomeView: View {
                             Spacer()
                             
                             Button {
-                                count += 1
+                                headCount += 1
                             } label: {
                                 Image(systemName: "plus")
                                     .frame(width: 14)
@@ -138,22 +144,25 @@ struct HomeView: View {
                 .background(Color.billWhg)
                 
                 ScrollView {
-                    Image("studing_logo")
+                    Image("homeMap")
                         .resizable()
                         .frame(width: .screenWidth)
                         .scaledToFit()
                         .padding(.bottom, 20)
                     
                     VStack(spacing: 10) {
-                        ForEach(0..<20, id: \.self) { index in
+                        ForEach(reservationStore.buildingList, id: \.self) { building in
                             Button {
-                                selectedButtonIndex = index
+                                selectedBuildingId = building.buildingId
+                                selectedBuildingName = building.buildingName
+                                selectedBuildingNumber = Int(building.buildingNumber) ?? 0
+                                selectedBuildingFloors = building.floors
                             } label: {
                                 HStack {
-                                    Text("1")
+                                    Text(building.buildingNumber)
                                         .padding(.leading, 25)
                                     
-                                    Text("대학 본부")
+                                    Text(building.buildingName)
                                         .padding(.leading, 36)
                                     
                                     Spacer()
@@ -166,7 +175,7 @@ struct HomeView: View {
                             .cornerRadius(10)
                             .overlay(
                                 RoundedRectangle(cornerRadius: 10)
-                                    .stroke(selectedButtonIndex == index ? Color.billColor1 : .clear, lineWidth: 2)
+                                    .stroke(selectedBuildingId == building.buildingId ? Color.billColor1 : .clear, lineWidth: 2)
                             )
                         }
                     }
@@ -184,7 +193,40 @@ struct HomeView: View {
                 .disabled(!nextButtonStatus)
                 .foregroundStyle(nextButtonStatus ? Color.billColor1 : Color.billGray3)
                 .navigationDestination(for: String.self) { value in
-                    SelectClassRoomView()
+                    SelectClassRoomView(selectedDateString: $selectedDateString, selectedHeadCount: $headCount, selectedBuilding: $selectedBuildingName, selectedBuildingId: $selectedBuildingId, selectedBuildingNumber: $selectedBuildingNumber, selectedBuildingFloors: $selectedBuildingFloors)
+                }
+            }
+        }
+        .onChange(of: selectedDate) {
+            let formatter = DateFormatter()
+            formatter.dateFormat = "yyyy-MM-dd"
+            selectedDateString = formatter.string(from: selectedDate)
+            print("selectedDateString: \(selectedDateString)")
+            reservationStore.getUnivBuilding(date: selectedDateString, headcount: headCount) { result in
+                if result {
+                    print("result: \(result)")
+                }
+            }
+        }
+        .onChange(of: headCount) {
+            let formatter = DateFormatter()
+            formatter.dateFormat = "yyyy-MM-dd"
+            selectedDateString = formatter.string(from: selectedDate)
+            print("selectedDateString: \(selectedDateString)")
+            reservationStore.getUnivBuilding(date: selectedDateString, headcount: headCount) { result in
+                if result {
+                    print("result: \(result)")
+                }
+            }
+        }
+        .onAppear {
+            let formatter = DateFormatter()
+            formatter.dateFormat = "yyyy-MM-dd"
+            selectedDateString = formatter.string(from: selectedDate)
+            print("onAppear - selectedDateString: \(selectedDateString)")
+            reservationStore.getUnivBuilding(date: selectedDateString, headcount: headCount) { result in
+                if result {
+                    print("result: \(result)")
                 }
             }
         }

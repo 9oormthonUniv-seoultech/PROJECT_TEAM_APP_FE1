@@ -11,6 +11,15 @@ struct ClassRoomInfoView: View {
     
     @Environment(\.dismiss) private var dismiss
     
+    @EnvironmentObject var reservationStore: ReservationStore
+    
+    @Binding var selectedBuilding: String
+    @Binding var selectedDateString: String
+    @Binding var selectedClassRoomId: Int
+    @Binding var selectedHeadCount: Int
+    
+    var classRoomDetailInfo: ClassRoomInfo = ClassRoomInfo(classroomId: 0, classroomName: "", classroomNumber: "", capacity: 0, description: "", classroomImages: [], reservationTimes: [])
+    
     private var nextButtonStatus: Bool {
         return true
     }
@@ -22,11 +31,11 @@ struct ClassRoomInfoView: View {
             }
             
             HStack {
-                Text("602호")
+                Text("\(reservationStore.classRoomDetailInfo.classroomNumber)호")
                     .font(.head)
                     .foregroundStyle(Color.billGray1)
                 
-                Text("|  실험실  |  기준인원 30명")
+                Text("|  \(reservationStore.classRoomDetailInfo.classroomName)  |  기준인원 \(reservationStore.classRoomDetailInfo.capacity)명")
                     .font(.body)
                     .foregroundStyle(Color.billGray1)
                 
@@ -81,9 +90,9 @@ struct ClassRoomInfoView: View {
                     .padding(.horizontal, 15)
                     
                     HStack(spacing: 0) {
-                        ForEach(0..<16, id: \ .self) { slot in
+                        ForEach(9..<24, id: \ .self) { hour in
                             Rectangle()
-                                .fill(slot >= 5 && slot <= 7 ? Color.gray : Color.white)
+                                .fill(isInAnyRange(hour: hour, reservationTimes: reservationStore.classRoomDetailInfo.reservationTimes) ? Color.gray : Color.white)
                                 .frame(height: 26)
                                 .overlay(
                                     Rectangle()
@@ -105,7 +114,7 @@ struct ClassRoomInfoView: View {
                                 .foregroundStyle(Color.billGray1)
                                 .padding(.leading, 12)
                             
-                            Text("빔 프로젝터, 컴퓨터, 사물함")
+                            Text(reservationStore.classRoomDetailInfo.description)
                                 .font(.body)
                                 .foregroundStyle(Color.billGray1)
                                 .padding(.leading, 39)
@@ -126,7 +135,7 @@ struct ClassRoomInfoView: View {
             Spacer()
             
             NavigationLink {
-                ClassRoomApplyView()
+                ClassRoomApplyView(selectedBuilding: $selectedBuilding, selectedDateString: $selectedDateString, selectedClassRoomId: $selectedClassRoomId, selectedHeadCount: $selectedHeadCount)
             } label: {
                 Text("신청하기")
                     .billageButtonModifier(width: .screenWidth * 0.9, height: 50, isEnabled: nextButtonStatus)
@@ -136,5 +145,34 @@ struct ClassRoomInfoView: View {
             .foregroundStyle(nextButtonStatus ? Color.billColor1 : Color.billGray3)
         }
         .navigationBarBackButtonHidden(true)
+        .onAppear {
+            print("selectedClassRoomId: \(selectedClassRoomId)")
+            print("selectedDateString: \(selectedDateString)")
+            
+            reservationStore.getUnivClassRoomInfo(classroomId: selectedClassRoomId, date: selectedDateString) { result in
+                if result {
+                    
+                }
+            }
+        }
+    }
+    
+    func isInAnyRange(hour: Int, reservationTimes: [ReservationTime]) -> Bool {
+        for time in reservationTimes {
+            if isInRange(hour: hour, startTime: time.startTime, endTime: time.endTime) {
+                return true
+            }
+        }
+        return false
+    }
+    
+    // 시간 범위를 판단하는 함수
+    func isInRange(hour: Int, startTime: String, endTime: String) -> Bool {
+        // "HH:mm" 형식의 문자열을 시간 값(Int)으로 변환
+        let startHour = Int(startTime.prefix(2)) ?? 0
+        let endHour = Int(endTime.prefix(2)) ?? 0
+
+        // 현재 슬롯 시간이 범위에 포함되는지 여부 반환
+        return hour >= startHour && hour < endHour
     }
 }

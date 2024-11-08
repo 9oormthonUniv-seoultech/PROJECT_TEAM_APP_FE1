@@ -13,6 +13,12 @@ struct ClassRoomApplyView: View {
     
     @EnvironmentObject var overlayManager: OverlayManager
     @EnvironmentObject var navigationPathManager: NavigationPathManager
+    @EnvironmentObject var reservationStore: ReservationStore
+    
+    @Binding var selectedBuilding: String
+    @Binding var selectedDateString: String
+    @Binding var selectedClassRoomId: Int
+    @Binding var selectedHeadCount: Int
     
     @State private var isStartTimePickerPresented: Bool = false
     @State private var isEndTimePickerPresented: Bool = false
@@ -35,11 +41,11 @@ struct ClassRoomApplyView: View {
                 }
                 
                 HStack {
-                    Text("602호")
+                    Text("\(reservationStore.classRoomDetailInfo.classroomNumber)호")
                         .font(.head)
                         .foregroundStyle(Color.billGray1)
                     
-                    Text("|  실험실  |  기준인원 30명")
+                    Text("|  \(reservationStore.classRoomDetailInfo.classroomName)  |  기준인원 \(reservationStore.classRoomDetailInfo.capacity)명")
                         .font(.body)
                         .foregroundStyle(Color.billGray1)
                     
@@ -76,9 +82,11 @@ struct ClassRoomApplyView: View {
                             .padding(.horizontal, 15)
                             
                             HStack(spacing: 0) {
-                                ForEach(0..<16, id: \ .self) { slot in
+                                ForEach(9..<24, id: \ .self) { hour in
                                     Rectangle()
-                                        .fill(slot >= 5 && slot <= 7 ? Color.gray : Color.white)
+                                        .fill(isInSelectedRange(hour: hour) ? Color.billColor1 : isInAnyRange(hour: hour, reservationTimes: reservationStore.classRoomDetailInfo.reservationTimes) ? Color.gray :
+                                            Color.white
+                                        )
                                         .frame(height: 26)
                                         .overlay(
                                             Rectangle()
@@ -217,6 +225,7 @@ struct ClassRoomApplyView: View {
                             
                             TextField("전화번호 입력...", text: $phoneNumber)
                                 .billageTextFieldModifier(width: .infinity, height: 52)
+                                .keyboardType(.numberPad) // 숫자 키패드
                                 .font(.body)
                                 .foregroundStyle(Color.billGray1)
                                 .overlay(
@@ -366,11 +375,11 @@ struct ClassRoomApplyView: View {
                                         .padding(.bottom, 16)
                                     
                                     VStack(alignment: .leading) {
-                                        Text("일시   2024/09/10, 20:00 ~ 21:00")
+                                        Text("일시   \(selectedDateString), \(startTime):00 ~ \(endTime):00")
                                             .font(.body)
                                             .foregroundStyle(Color.billGray1)
                                         
-                                        Text("장소   다빈치관 602호")
+                                        Text("장소   \(selectedBuilding) \(reservationStore.classRoomDetailInfo.classroomNumber)호")
                                             .font(.body)
                                             .foregroundStyle(Color.billGray1)
                                     }
@@ -380,6 +389,26 @@ struct ClassRoomApplyView: View {
                                         Button {
                                             overlayManager.hideSheet()
                                             navigationPathManager.resetToRoot()
+                                            
+                                            print("classroomId: \(selectedClassRoomId)")
+                                            print("phoneNumber: \(formatPhoneNumber(phoneNumber))")
+                                            print("applyDate: \(selectedDateString)")
+                                            print("startTime: \(startTime):00")
+                                            print("endTime: \(endTime):00")
+                                            print("headcount: \(selectedHeadCount)")
+                                            print("purpose: \(selectedReason)")
+                                            print("contents: \(memo)")
+                                            
+                                            reservationStore.postReservations(
+                                                classroomId: selectedClassRoomId,
+                                                phoneNumber: formatPhoneNumber(phoneNumber),
+                                                applyDate: selectedDateString,
+                                                startTime: "\(startTime):00",
+                                                endTime: "\(endTime):00",
+                                                headcount: selectedHeadCount,
+                                                purpose: selectedReason,
+                                                contents: memo
+                                            )
                                         } label: {
                                             Text("신청")
                                                 .billageButtonModifier(width: .infinity, height: 44, isEnabled: nextButtonStatus)
@@ -408,9 +437,50 @@ struct ClassRoomApplyView: View {
                 }
             }
             .navigationBarBackButtonHidden(true)
+            .onTapGesture {
+                self.hideKeyboard()
+            }
         }
         .onAppear {
             OverlayWindow.shared.hide() // 앱 시작 시 숨김 상태로 유지
         }
+    }
+    
+    func isInSelectedRange(hour: Int) -> Bool {
+        return hour >= startTime && hour < endTime
+    }
+    
+    func isInAnyRange(hour: Int, reservationTimes: [ReservationTime]) -> Bool {
+        for time in reservationTimes {
+            if isInRange(hour: hour, startTime: time.startTime, endTime: time.endTime) {
+                return true
+            }
+        }
+        return false
+    }
+    
+    // 시간 범위를 판단하는 함수
+    func isInRange(hour: Int, startTime: String, endTime: String) -> Bool {
+        // "HH:mm" 형식의 문자열을 시간 값(Int)으로 변환
+        let startHour = Int(startTime.prefix(2)) ?? 0
+        let endHour = Int(endTime.prefix(2)) ?? 0
+
+        // 현재 슬롯 시간이 범위에 포함되는지 여부 반환
+        return hour >= startHour && hour < endHour
+    }
+    
+    func formatPhoneNumber(_ phoneNumber: String) -> String {
+        let cleanPhoneNumber = phoneNumber.filter { $0.isNumber }
+        
+        guard cleanPhoneNumber.count == 11 else {
+            return phoneNumber // 유효하지 않은 길이면 원본 반환
+        }
+        
+        let startIndex = cleanPhoneNumber.index(cleanPhoneNumber.startIndex, offsetBy: 3)
+        let middleIndex = cleanPhoneNumber.index(cleanPhoneNumber.startIndex, offsetBy: 7)
+        
+        let formattedNumber = "\(cleanPhoneNumber[..<startIndex])-\(cleanPhoneNumber[startIndex..<middleIndex])-\(cleanPhoneNumber[middleIndex...])"
+        
+        return formattedNumber
     }
 }
