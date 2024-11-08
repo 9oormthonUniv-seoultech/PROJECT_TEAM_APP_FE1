@@ -9,11 +9,15 @@ import SwiftUI
 
 struct LoginView: View {
     
+    @EnvironmentObject var authStore: AuthStore
+    @EnvironmentObject var signUpUserStore: SignUpUserStore
+    @EnvironmentObject var navigationPathManager: NavigationPathManager
+    
     @State private var id: String = ""
     @State private var password: String = ""
     
     var body: some View {
-        NavigationStack {
+        NavigationStack(path: $navigationPathManager.path) {
             VStack {
                 Spacer()
                 
@@ -50,7 +54,11 @@ struct LoginView: View {
                 .padding(.bottom, 16)
                 
                 Button {
-                    print("로그인")
+                    authStore.login(studentNumber: id, password: password) { result in
+                        if result {
+                            authStore.isHavingToken = true
+                        }
+                    }
                 } label: {
                     Text("로그인")
                         .billageButtonModifier(width: .screenWidth * 0.9, height: 50, isEnabled: true)
@@ -66,12 +74,13 @@ struct LoginView: View {
                             .foregroundStyle(Color.billGray1)
                     }
                     
-                    NavigationLink {
-                        SignUpFirstView()
-                    } label: {
+                    NavigationLink(value: "TEST") {
                         Text("회원가입 하기")
                             .font(.par)
                             .foregroundStyle(Color.billGray1)
+                    }
+                    .navigationDestination(for: String.self) { value in
+                        SignUpFirstView()
                     }
                 }
                 
