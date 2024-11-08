@@ -8,6 +8,10 @@
 import SwiftUI
 
 struct BillageDatePickerScrollView: View {
+    
+    // 부모 뷰에서 바인딩으로 받아올 선택된 날짜
+    @Binding var selectedDate: Date
+    
     // 오늘 날짜를 기준으로 날짜들을 생성하는 함수
     func generateDates(startingFrom date: Date, count: Int) -> [Date] {
         var dates = [Date]()
@@ -33,9 +37,6 @@ struct BillageDatePickerScrollView: View {
         formatter.dateFormat = "EEEE" // 요일 출력
         return formatter
     }()
-
-    // 선택한 날짜 저장
-    @State private var selectedDate: Date?
 
     var body: some View {
         let today = Date() // 오늘 날짜 기준
