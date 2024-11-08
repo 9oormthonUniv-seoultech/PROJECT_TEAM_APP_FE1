@@ -9,6 +9,8 @@ import SwiftUI
 
 struct ApplyView: View {
     
+    @EnvironmentObject var reservationStore: ReservationStore
+    
     @State private var selectedTab: Int = 0
     
     var body: some View {
@@ -48,6 +50,13 @@ struct ApplyView: View {
                 ],
                 selectedTab: $selectedTab
             )
+        }
+        .onAppear {
+            reservationStore.getReservationList(isPast: false, page: 1) { result in
+                if result {
+                    
+                }
+            }
         }
     }
 }

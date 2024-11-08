@@ -9,7 +9,7 @@ import SwiftUI
 
 struct ReservationView: View {
     
-    var reservation: Reservation
+    var reservation: Reservations
     
     var onCancelReservation: (() -> Void)?
     var onViewRejectionReason: (() -> Void)?
@@ -17,11 +17,11 @@ struct ReservationView: View {
     var body: some View {
         VStack(alignment: .leading) {
             HStack {
-                Text(reservation.status)
+                Text(reservation.reservationStatus)
                     .font(.bodybold)
-                    .foregroundColor(statusFontColor(status: reservation.status))
+                    .foregroundColor(statusFontColor(status: reservation.reservationStatus))
                     .frame(width: 72, height: 36)
-                    .background(statusColor(status: reservation.status))
+                    .background(statusColor(status: reservation.reservationStatus))
                     .cornerRadius(12)
                 
                 Spacer()
@@ -32,26 +32,26 @@ struct ReservationView: View {
             
             VStack(spacing: 8) {
                 HStack(spacing: 10) {
-                    Text(reservation.date)
+                    Text(formatDate(reservation.applyDate) ?? "")
                         .frame(width: 189)
                         .reservationBackgroundModifier()
                     
-                    Text(reservation.numberOfPeople)
+                    Text("\(reservation.headcount) 명")
                         .frame(maxWidth: .infinity)
                         .reservationBackgroundModifier()
                 }
                 
                 HStack(spacing: 10) {
-                    Text(reservation.location)
+                    Text(reservation.classroomName)
                         .frame(width: 189)
                         .reservationBackgroundModifier()
                     
-                    Text(reservation.roomNumber)
+                    Text(reservation.classroomNumber)
                         .frame(maxWidth: .infinity)
                         .reservationBackgroundModifier()
                 }
                 
-                Text(reservation.time)
+                Text("\(reservation.startTime) ~ \(reservation.endTime)")
                     .frame(maxWidth: .infinity)
                     .reservationBackgroundModifier()
             }
@@ -60,7 +60,7 @@ struct ReservationView: View {
             .padding(.horizontal, 14)
             .padding(.bottom, 24)
             
-            if reservation.status == "예약거절" {
+            if reservation.reservationStatus == "예약 거절" {
                 HStack {
                     Spacer()
                     
@@ -77,14 +77,14 @@ struct ReservationView: View {
             }
             
             HStack {
-                Text("문의 \(reservation.contact)")
+                Text("문의 \(reservation.adminPhoneNumber)")
                     .font(.sub)
                     .foregroundStyle(Color.billGray1)
                     .padding(.leading, 15)
                 
                 Spacer()
                 
-                if reservation.status != "학생취소" {
+                if reservation.reservationStatus != "학생 취소" {
                     Button {
                         onCancelReservation?()
                     } label: {
@@ -107,9 +107,9 @@ struct ReservationView: View {
     
     func statusFontColor(status: String) -> Color {
         switch status {
-        case "예약승인", "예약거절", "학생취소" :
+        case "예약 승인", "예약 거절", "학생 취소" :
             return Color.billWh
-        case "예약대기":
+        case "예약 대기":
             return Color.billGray1
         default:
             return Color.clear
@@ -118,16 +118,37 @@ struct ReservationView: View {
     
     func statusColor(status: String) -> Color {
         switch status {
-        case "예약승인":
+        case "예약 승인":
             return Color.billColor1
-        case "예약대기":
+        case "예약 대기":
             return Color.billColor2
-        case "학생취소":
+        case "학생 취소":
             return Color.billGray3
-        case "예약거절":
+        case "예약 거절":
             return Color.billError
         default:
             return Color.clear
+        }
+    }
+    
+    func formatDate(_ inputDate: String) -> String? {
+        // 입력 날짜 형식 ("yyyy-MM-dd")
+        let inputFormatter = DateFormatter()
+        inputFormatter.dateFormat = "yyyy-MM-dd"
+        inputFormatter.locale = Locale(identifier: "ko_KR")
+        inputFormatter.timeZone = TimeZone(abbreviation: "KST")
+
+        // 출력 날짜 형식 ("yyyy/MM/dd(E)")
+        let outputFormatter = DateFormatter()
+        outputFormatter.dateFormat = "yyyy/MM/dd(E)"
+        outputFormatter.locale = Locale(identifier: "ko_KR")
+        outputFormatter.timeZone = TimeZone(abbreviation: "KST")
+
+        // 문자열 -> Date -> 문자열 변환
+        if let date = inputFormatter.date(from: inputDate) {
+            return outputFormatter.string(from: date)
+        } else {
+            return nil
         }
     }
 }

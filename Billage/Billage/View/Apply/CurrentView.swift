@@ -10,19 +10,12 @@ import SwiftUI
 struct CurrentView: View {
     
     @EnvironmentObject var overlayManager: OverlayManager
-    
-    let reservations = [
-            Reservation(status: "예약승인", date: "2024/09/10(화)", numberOfPeople: "12 명", location: "다빈치관", roomNumber: "602호", time: "20:00 ~ 22:00", contact: "02-970-0000"),
-            Reservation(status: "예약대기", date: "2024/09/12(목)", numberOfPeople: "8 명", location: "갈릴레이관", roomNumber: "203호", time: "18:00 ~ 20:00", contact: "02-970-1111"),
-            Reservation(status: "예약거절", date: "2024/09/15(일)", numberOfPeople: "15 명", location: "아인슈타인관", roomNumber: "101호", time: "14:00 ~ 16:00", contact: "02-970-2222"),
-            Reservation(status: "학생취소", date: "2024/09/18(수)", numberOfPeople: "10 명", location: "뉴턴관", roomNumber: "305호", time: "19:00 ~ 21:00", contact: "02-970-3333"),
-            Reservation(status: "예약승인", date: "2024/09/20(금)", numberOfPeople: "20 명", location: "코페르니쿠스관", roomNumber: "501호", time: "17:00 ~ 19:00", contact: "02-970-4444")
-        ]
+    @EnvironmentObject var reservationStore: ReservationStore
     
     var body: some View {
         ScrollView {
             LazyVStack {
-                ForEach(reservations) { reservation in
+                ForEach(reservationStore.totalReservationList, id: \.self) { reservation in
                     ReservationView(
                         reservation: reservation,
                         onCancelReservation: {
