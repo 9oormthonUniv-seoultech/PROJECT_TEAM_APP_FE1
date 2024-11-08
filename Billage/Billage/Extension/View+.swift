@@ -31,4 +31,8 @@ extension View {
     func backButtonArrow() -> some View {
         self.modifier(BackButtonArrowModifier())
     }
+    
+    func hideKeyboard() {
+        UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)
+    }
 }
